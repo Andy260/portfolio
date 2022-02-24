@@ -348,5 +348,10 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+
+# Mapping files for compiled client files
 *.map
+
+# Compiled style files for client files
+src/Client/Core/wwwroot/css/*.*
 *.css

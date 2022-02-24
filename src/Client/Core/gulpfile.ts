@@ -1,4 +1,5 @@
-﻿const { src, dest, series, parallel } = require("gulp");
+/// <binding BeforeBuild='build' Clean='clean' />
+const { src, dest, series, parallel } = require("gulp");
 const cleancss = require("gulp-clean-css");
 const del = require("del");
 const filelog = require("gulp-filelog");
@@ -17,15 +18,28 @@ let scssSettings =
 };
 
 // Compiles all SCSS files
-function compileSCSS(): any
+// except App.razor.scss
+function compileComponentSCSS(): any
 {
-    return src(["**/*.scss", "!node_modules/**", "!wwwroot/**"])
+    return src(["**/*.scss", "!node_modules/**", "!wwwroot/**", "!./app.scss"])
         .pipe(filelog())
         .pipe(gulpif(!isProduction, sourcemaps.init()))
         .pipe(sass(scssSettings).on("error", sass.logError))
         .pipe(gulpif(isProduction, cleancss({ level: 2 })))
         .pipe(gulpif(!isProduction, sourcemaps.write("./")))
         .pipe(dest("./"));
+}
+
+// Compiles App.razor.scss
+function compileAppSCSS(): any
+{
+    return src(["./app.scss"])
+        .pipe(filelog())
+        .pipe(gulpif(!isProduction, sourcemaps.init()))
+        .pipe(sass(scssSettings).on("error", sass.logError))
+        .pipe(gulpif(isProduction, cleancss({ level: 2 })))
+        .pipe(gulpif(!isProduction, sourcemaps.write("./")))
+        .pipe(dest("./wwwroot/css"));
 }
 
 // Compiles all Typescript files
@@ -69,10 +83,16 @@ function cleanTypescript(): any
     return del(["**/*.js" , "**/*.js.map", "!node_modules/**", "!gulpfile.js", "!gulpfile.ts"]);
 }
 
-exports.build =
-    series(parallel(cleanDependencies, cleanSCSS, cleanTypescript),
-        parallel(restoreDependencies, compileSCSS, compileTypescript));
-exports.compileSCSS = compileSCSS;
+exports.compileSCSS = series(compileAppSCSS, compileComponentSCSS);
 exports.compileTypescript = compileTypescript;
 exports.restoreDependencies = restoreDependencies;
 exports.clean = parallel(cleanDependencies, cleanSCSS, cleanTypescript);
+exports.build =
+    series(
+        exports.clean,
+        parallel(
+            exports.compileSCSS,
+            exports.restoreDependencies,
+            exports.compileTypescript
+        )
+    );
