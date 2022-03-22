@@ -5,6 +5,7 @@ VisualStudioVersion = 17.1.32210.238
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Client", "src\Client\Core\Portfolio.Client.csproj", "{0EFE836A-CB05-4588-B004-37EB53093017}"
 	ProjectSection(ProjectDependencies) = postProject
+		{ECE31F14-6114-4CC8-A798-310174A73D78} = {ECE31F14-6114-4CC8-A798-310174A73D78}
 		{11BA9FAC-2E3C-44ED-8E94-F4698738D43F} = {11BA9FAC-2E3C-44ED-8E94-F4698738D43F}
 		{C131C3C7-1902-40A6-BADF-D90666335423} = {C131C3C7-1902-40A6-BADF-D90666335423}
 	EndProjectSection
@@ -15,6 +16,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Client.Frontend",
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Server", "src\Server\Portfolio.Server.csproj", "{34EC9232-B11F-423C-BCEE-C88FF265A37C}"
 	ProjectSection(ProjectDependencies) = postProject
+		{ECE31F14-6114-4CC8-A798-310174A73D78} = {ECE31F14-6114-4CC8-A798-310174A73D78}
 		{0EFE836A-CB05-4588-B004-37EB53093017} = {0EFE836A-CB05-4588-B004-37EB53093017}
 	EndProjectSection
 EndProject
@@ -24,6 +26,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Client.Tests", "t
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Server.Tests", "tests\Server\Portfolio.Server.Tests.csproj", "{8AB25A5D-1842-4C7A-9D87-96910F5D5E74}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Shared", "src\Shared\Portfolio.Shared.csproj", "{ECE31F14-6114-4CC8-A798-310174A73D78}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Portfolio.Shared.Tests", "tests\Shared\Portfolio.Shared.Tests.csproj", "{3B4FDB24-2F00-40C4-B43F-5368FFD6BA7F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{ECE31F14-6114-4CC8-A798-310174A73D78} = {ECE31F14-6114-4CC8-A798-310174A73D78}
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -55,6 +64,14 @@ Global
 		{8AB25A5D-1842-4C7A-9D87-96910F5D5E74}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8AB25A5D-1842-4C7A-9D87-96910F5D5E74}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8AB25A5D-1842-4C7A-9D87-96910F5D5E74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{ECE31F14-6114-4CC8-A798-310174A73D78}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{ECE31F14-6114-4CC8-A798-310174A73D78}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{ECE31F14-6114-4CC8-A798-310174A73D78}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{ECE31F14-6114-4CC8-A798-310174A73D78}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3B4FDB24-2F00-40C4-B43F-5368FFD6BA7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3B4FDB24-2F00-40C4-B43F-5368FFD6BA7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3B4FDB24-2F00-40C4-B43F-5368FFD6BA7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3B4FDB24-2F00-40C4-B43F-5368FFD6BA7F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
